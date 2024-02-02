@@ -10,24 +10,14 @@ using System.Windows.Forms;
 
 namespace CMPT391Project
 {
-    public partial class ClassSearch : UserControl
+    public partial class EnrolledClasses : UserControl
     {
-        public ClassSearch()
+        public EnrolledClasses()
         {
             InitializeComponent();
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
