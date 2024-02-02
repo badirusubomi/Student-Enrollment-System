@@ -30,6 +30,11 @@
         {
             this.logInPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.LoginLabel = new System.Windows.Forms.Label();
+            this.loginButton = new System.Windows.Forms.Button();
+            this.password = new System.Windows.Forms.TextBox();
+            this.userName = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.profileButton = new System.Windows.Forms.Button();
             this.classSearchButton = new System.Windows.Forms.Button();
@@ -38,20 +43,16 @@
             this.logOutButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.exitButton = new System.Windows.Forms.Button();
-            this.LoginLabel = new System.Windows.Forms.Label();
-            this.loginButton = new System.Windows.Forms.Button();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
-            this.password = new System.Windows.Forms.TextBox();
-            this.userName = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.profilePage1 = new CMPT391Project.ProfilePage();
             this.cartPage1 = new CMPT391Project.CartPage();
+            this.profilePage1 = new CMPT391Project.ProfilePage();
+            this.classSearch1 = new CMPT391Project.ClassSearch();
             this.logInPanel.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // logInPanel
@@ -75,6 +76,55 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1026, 666);
             this.panel1.TabIndex = 3;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.classSearch1);
+            this.panel3.Controls.Add(this.cartPage1);
+            this.panel3.Controls.Add(this.profilePage1);
+            this.panel3.Controls.Add(this.LoginLabel);
+            this.panel3.Controls.Add(this.loginButton);
+            this.panel3.Controls.Add(this.password);
+            this.panel3.Controls.Add(this.userName);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(218, 65);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(808, 601);
+            this.panel3.TabIndex = 6;
+            // 
+            // LoginLabel
+            // 
+            this.LoginLabel.AutoSize = true;
+            this.LoginLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginLabel.Location = new System.Drawing.Point(131, 68);
+            this.LoginLabel.Name = "LoginLabel";
+            this.LoginLabel.Size = new System.Drawing.Size(110, 42);
+            this.LoginLabel.TabIndex = 5;
+            this.LoginLabel.Text = "Login";
+            // 
+            // loginButton
+            // 
+            this.loginButton.Location = new System.Drawing.Point(103, 318);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(152, 43);
+            this.loginButton.TabIndex = 2;
+            this.loginButton.Text = "Login";
+            this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            // 
+            // password
+            // 
+            this.password.Location = new System.Drawing.Point(72, 241);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(224, 20);
+            this.password.TabIndex = 0;
+            // 
+            // userName
+            // 
+            this.userName.Location = new System.Drawing.Point(72, 170);
+            this.userName.Name = "userName";
+            this.userName.Size = new System.Drawing.Size(224, 20);
+            this.userName.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -118,6 +168,7 @@
             this.classSearchButton.Text = "Class Search";
             this.classSearchButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.classSearchButton.UseVisualStyleBackColor = false;
+            this.classSearchButton.Click += new System.EventHandler(this.classSearchButton_Click);
             // 
             // cartButton
             // 
@@ -185,26 +236,6 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // LoginLabel
-            // 
-            this.LoginLabel.AutoSize = true;
-            this.LoginLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginLabel.Location = new System.Drawing.Point(131, 68);
-            this.LoginLabel.Name = "LoginLabel";
-            this.LoginLabel.Size = new System.Drawing.Size(110, 42);
-            this.LoginLabel.TabIndex = 5;
-            this.LoginLabel.Text = "Login";
-            // 
-            // loginButton
-            // 
-            this.loginButton.Location = new System.Drawing.Point(103, 318);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(152, 43);
-            this.loginButton.TabIndex = 2;
-            this.loginButton.Text = "Login";
-            this.loginButton.UseVisualStyleBackColor = true;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
-            // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
@@ -223,33 +254,14 @@
             this.passwordLabel.TabIndex = 1;
             this.passwordLabel.Text = "Password";
             // 
-            // password
+            // cartPage1
             // 
-            this.password.Location = new System.Drawing.Point(72, 241);
-            this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(224, 20);
-            this.password.TabIndex = 0;
-            // 
-            // userName
-            // 
-            this.userName.Location = new System.Drawing.Point(72, 170);
-            this.userName.Name = "userName";
-            this.userName.Size = new System.Drawing.Size(224, 20);
-            this.userName.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.cartPage1);
-            this.panel3.Controls.Add(this.profilePage1);
-            this.panel3.Controls.Add(this.LoginLabel);
-            this.panel3.Controls.Add(this.loginButton);
-            this.panel3.Controls.Add(this.password);
-            this.panel3.Controls.Add(this.userName);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(218, 65);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(808, 601);
-            this.panel3.TabIndex = 6;
+            this.cartPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cartPage1.Location = new System.Drawing.Point(0, 0);
+            this.cartPage1.Name = "cartPage1";
+            this.cartPage1.Size = new System.Drawing.Size(808, 601);
+            this.cartPage1.TabIndex = 7;
+            this.cartPage1.Load += new System.EventHandler(this.cartPage1_Load);
             // 
             // profilePage1
             // 
@@ -259,13 +271,12 @@
             this.profilePage1.Size = new System.Drawing.Size(808, 601);
             this.profilePage1.TabIndex = 6;
             // 
-            // cartPage1
+            // classSearch1
             // 
-            this.cartPage1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cartPage1.Location = new System.Drawing.Point(0, 0);
-            this.cartPage1.Name = "cartPage1";
-            this.cartPage1.Size = new System.Drawing.Size(808, 601);
-            this.cartPage1.TabIndex = 7;
+            this.classSearch1.Location = new System.Drawing.Point(6, 6);
+            this.classSearch1.Name = "classSearch1";
+            this.classSearch1.Size = new System.Drawing.Size(635, 476);
+            this.classSearch1.TabIndex = 8;
             // 
             // LogIn
             // 
@@ -281,10 +292,10 @@
             this.logInPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -310,6 +321,7 @@
         private System.Windows.Forms.Panel panel3;
         private CartPage cartPage1;
         private ProfilePage profilePage1;
+        private ClassSearch classSearch1;
     }
 }
 
