@@ -30,6 +30,7 @@ namespace CMPT391Project
             cartPage1.Hide();
             profilePage1.Hide();
             classSearch1.Hide();
+            enrolledClasses1.Hide();
 
             LoginLabel.Show();
 
@@ -57,6 +58,7 @@ namespace CMPT391Project
             cartPage1.Show();
             profilePage1.Show();
             classSearch1.Show();
+            enrolledClasses1.Show();
 
 
             flowLayoutPanel1.Show();
@@ -92,6 +94,16 @@ namespace CMPT391Project
         private void cartPage1_Load(object sender, EventArgs e)
         {
              
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void enrolledClassesButton_Click(object sender, EventArgs e)
+        {
+            enrolledClasses1.BringToFront();
         }
     }
 }

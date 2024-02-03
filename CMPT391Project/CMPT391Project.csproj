@@ -61,6 +61,12 @@
     <Compile Include="ClassSearch.Designer.cs">
       <DependentUpon>ClassSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="EnrolledClasses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnrolledClasses.Designer.cs">
+      <DependentUpon>EnrolledClasses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClassSearch.resx">
       <DependentUpon>ClassSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnrolledClasses.resx">
+      <DependentUpon>EnrolledClasses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

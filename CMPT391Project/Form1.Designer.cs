@@ -45,9 +45,10 @@
             this.exitButton = new System.Windows.Forms.Button();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
+            this.classSearch1 = new CMPT391Project.ClassSearch();
             this.cartPage1 = new CMPT391Project.CartPage();
             this.profilePage1 = new CMPT391Project.ProfilePage();
-            this.classSearch1 = new CMPT391Project.ClassSearch();
+            this.enrolledClasses1 = new CMPT391Project.EnrolledClasses();
             this.logInPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,6 +80,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.enrolledClasses1);
             this.panel3.Controls.Add(this.classSearch1);
             this.panel3.Controls.Add(this.cartPage1);
             this.panel3.Controls.Add(this.profilePage1);
@@ -198,6 +200,7 @@
             this.enrolledClassesButton.Text = "Enrolled Classes";
             this.enrolledClassesButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.enrolledClassesButton.UseVisualStyleBackColor = false;
+            this.enrolledClassesButton.Click += new System.EventHandler(this.enrolledClassesButton_Click);
             // 
             // logOutButton
             // 
@@ -223,6 +226,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1026, 65);
             this.panel2.TabIndex = 3;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // exitButton
             // 
@@ -254,6 +258,14 @@
             this.passwordLabel.TabIndex = 1;
             this.passwordLabel.Text = "Password";
             // 
+            // classSearch1
+            // 
+            this.classSearch1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.classSearch1.Location = new System.Drawing.Point(0, 0);
+            this.classSearch1.Name = "classSearch1";
+            this.classSearch1.Size = new System.Drawing.Size(808, 601);
+            this.classSearch1.TabIndex = 8;
+            // 
             // cartPage1
             // 
             this.cartPage1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -271,12 +283,13 @@
             this.profilePage1.Size = new System.Drawing.Size(808, 601);
             this.profilePage1.TabIndex = 6;
             // 
-            // classSearch1
+            // enrolledClasses1
             // 
-            this.classSearch1.Location = new System.Drawing.Point(6, 6);
-            this.classSearch1.Name = "classSearch1";
-            this.classSearch1.Size = new System.Drawing.Size(635, 476);
-            this.classSearch1.TabIndex = 8;
+            this.enrolledClasses1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.enrolledClasses1.Location = new System.Drawing.Point(0, 0);
+            this.enrolledClasses1.Name = "enrolledClasses1";
+            this.enrolledClasses1.Size = new System.Drawing.Size(808, 601);
+            this.enrolledClasses1.TabIndex = 9;
             // 
             // LogIn
             // 
@@ -322,6 +335,7 @@
         private CartPage cartPage1;
         private ProfilePage profilePage1;
         private ClassSearch classSearch1;
+        private EnrolledClasses enrolledClasses1;
     }
 }
 
