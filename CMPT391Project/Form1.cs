@@ -78,8 +78,6 @@ namespace CMPT391Project
 
 
                         returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
-
-
                     }
                 }
                 catch(SqlException exception)
@@ -92,27 +90,31 @@ namespace CMPT391Project
             // -1 represents bad login/connection
             if (returnedValue > 0)
             {
-                passwordLabel.Hide();
-                usernameLabel.Hide();
-
-
-                password.Hide();
-                userName.Hide();
-                flowLayoutPanel1.Show();
-                panel2.Show();
-                cartPage1.Show();
-                profilePage1.Show();
-                classSearch1.Show();
-                enrolledClasses1.Show();
-
-
-                flowLayoutPanel1.Show();
-                profilePage1.Show();
-                profilePage1.BringToFront();
+                logInProcedure();
             }
 
         }
 
+        private void logInProcedure()
+        {
+            passwordLabel.Hide();
+            usernameLabel.Hide();
+
+
+            password.Hide();
+            userName.Hide();
+            flowLayoutPanel1.Show();
+            panel2.Show();
+            cartPage1.Show();
+            profilePage1.Show();
+            classSearch1.Show();
+            enrolledClasses1.Show();
+
+
+            flowLayoutPanel1.Show();
+            profilePage1.Show();
+            profilePage1.BringToFront();
+        }
         private void exitButton_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);

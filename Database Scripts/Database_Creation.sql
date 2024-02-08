@@ -1,4 +1,4 @@
-
+use CMPT391Database
 create TABLE [Student] (
   [studentID] integer PRIMARY KEY,
   [fName] nvarchar(64),
@@ -116,4 +116,6 @@ ALTER TABLE [Teaches] ADD FOREIGN KEY ([secID], [sem], [year]) REFERENCES [Secti
 
 ALTER TABLE [Section] ADD FOREIGN KEY ([timeslotID]) REFERENCES [Timeslot] ([timeslotID])
 GO
+
+INSERT INTO [Student] values(1,'Olasubomi','Badiru','7802009763','badiruo@mymacewan.ca','badiruo');
 
