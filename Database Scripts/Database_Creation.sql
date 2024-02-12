@@ -5,8 +5,8 @@ create TABLE [Student] (
   [studentID] integer PRIMARY KEY,
   [fName] nvarchar(64),
   [lName] nvarchar(128),
-  [phone] nvarchar(13),
   [email] nvarchar(128),
+  [phone] nvarchar(13),
   [password] nvarchar(128),
   [active] nvarchar(8)
 )
@@ -102,7 +102,7 @@ GO
 ALTER TABLE [taken] ADD FOREIGN KEY ([courseID]) REFERENCES [course] ([courseID])
 GO
 
-ALTER TABLE [Taken] ADD FOREIGN KEY ([secID], [sem], [year]) REFERENCES [Section] ([secID], [sem], [year])
+ALTER TABLE [Taken] ADD FOREIGN KEY ([courseID],[secID], [sem], [year]) REFERENCES [Section] ([courseID],[secID], [sem], [year])
 GO
 
 
@@ -112,9 +112,10 @@ GO
 ALTER TABLE [Teaches] ADD FOREIGN KEY ([courseID]) REFERENCES [Course] ([courseID])
 GO
 
-ALTER TABLE [Teaches] ADD FOREIGN KEY ([secID], [sem], [year]) REFERENCES [Section] ([secID], [sem], [year]);
+ALTER TABLE [Teaches] ADD FOREIGN KEY ([courseID], [secID], [sem], [year]) REFERENCES [Section] ([courseID] , [secID], [sem], [year]);
 
 
 ALTER TABLE [Section] ADD FOREIGN KEY ([timeslotID]) REFERENCES [Timeslot] ([timeslotID])
 GO
 
+INSERT INTO [Student] values(1,'Olasubomi','Badiru','7802009763','badiruo@mymacewan.ca','badiruo', 'true');
