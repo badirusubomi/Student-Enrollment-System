@@ -1,5 +1,5 @@
 use CMPT391Database
-go;
+go
 
 
 
@@ -28,8 +28,8 @@ BEGIN
             BEGIN
                 -- Update the status of the existing enrollment
                 UPDATE Taken
-                SET status = 2
-                WHERE studentID = @studentID AND courseID = @courseID AND secID = @sectionID AND sem = @semester AND year = @year AND status = 1;
+                SET progress = 2
+                WHERE studentID = @studentID AND courseID = @courseID AND secID = @sectionID AND sem = @semester AND year = @year AND progress = 1;
 
                 -- Increment the enrollment count for the section
                 UPDATE Section
@@ -57,7 +57,7 @@ BEGIN
         RETURN -1;
     END
 END
-go;
+go
 
 
 
