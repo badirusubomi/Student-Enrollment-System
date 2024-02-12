@@ -11,12 +11,13 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
+
 namespace CMPT391Project
 {
     public partial class LogIn : Form
     {
-       
 
+        
         public LogIn()
         {
             InitializeComponent();
@@ -54,7 +55,7 @@ namespace CMPT391Project
             var sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
 
             // Default local host database with name CMPT391Database
-            using (SqlConnection conn = new SqlConnection(sqlConn))
+            using (SqlConnection conn = new SqlConnection(sqlConn)) 
             {
                 try
                 {
@@ -93,6 +94,7 @@ namespace CMPT391Project
             // -1 represents bad login/connection
             if (returnedValue > 0)
             {
+                enrolledClasses1.getUser = userName.Text;
                 passwordLabel.Hide();
                 usernameLabel.Hide();
 
@@ -110,6 +112,8 @@ namespace CMPT391Project
                 flowLayoutPanel1.Show();
                 profilePage1.Show();
                 profilePage1.BringToFront();
+
+                
             }
 
         }

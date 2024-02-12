@@ -6,13 +6,12 @@ AS
 BEGIN
    (SELECT c.courseName, t.sem, t.year FROM Course c, Taken t 
    WHERE   t.studentID = @username 
-   AND t.sem = @sem 
+   AND UPPER(t.sem) = UPPER(@sem)
    AND t.year = @year)
    
    
    
 END
 
-
-
+exec  show_enrolled_classes 7, fall, 2023
 
