@@ -42,6 +42,7 @@
             this.phoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.updateButton = new System.Windows.Forms.Button();
+            this.displayButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -69,7 +70,7 @@
             // emailTextBox
             // 
             this.emailTextBox.Location = new System.Drawing.Point(394, 187);
-            this.emailTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.emailTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(269, 22);
             this.emailTextBox.TabIndex = 2;
@@ -77,7 +78,7 @@
             // nameTextBox
             // 
             this.nameTextBox.Location = new System.Drawing.Point(394, 105);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(269, 22);
             this.nameTextBox.TabIndex = 2;
@@ -155,11 +156,23 @@
             this.updateButton.TabIndex = 12;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
+            // displayButton
+            // 
+            this.displayButton.Location = new System.Drawing.Point(122, 380);
+            this.displayButton.Name = "displayButton";
+            this.displayButton.Size = new System.Drawing.Size(75, 23);
+            this.displayButton.TabIndex = 13;
+            this.displayButton.Text = "Display";
+            this.displayButton.UseVisualStyleBackColor = true;
+            this.displayButton.Click += new System.EventHandler(this.displayButton_Click);
             // 
             // ProfilePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.displayButton);
             this.Controls.Add(this.updateButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.phoneNumberTextBox);
@@ -171,7 +184,7 @@
             this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.nameLabel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProfilePage";
             this.Size = new System.Drawing.Size(847, 586);
             this.ResumeLayout(false);
@@ -194,5 +207,6 @@
         private System.Windows.Forms.TextBox phoneNumberTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Button displayButton;
     }
 }

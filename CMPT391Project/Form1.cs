@@ -15,7 +15,6 @@ namespace CMPT391Project
 {
     public partial class LogIn : Form
     {
-       
 
         public LogIn()
         {
@@ -96,6 +95,7 @@ namespace CMPT391Project
                 passwordLabel.Hide();
                 usernameLabel.Hide();
 
+                Program.globalString = userName.Text;
 
                 password.Hide();
                 userName.Hide();
@@ -121,7 +121,7 @@ namespace CMPT391Project
 
         private void profileButton_Click(object sender, EventArgs e)
         {
-           profilePage1.BringToFront();
+            profilePage1.BringToFront();
         }
 
         private void cartButton_Click(object sender, EventArgs e)
