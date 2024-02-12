@@ -79,8 +79,6 @@ namespace CMPT391Project
 
 
                         returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
-
-
                     }
                 }
                 catch(SqlException exception)
@@ -93,27 +91,31 @@ namespace CMPT391Project
             // -1 represents bad login/connection
             if (returnedValue > 0)
             {
-                passwordLabel.Hide();
-                usernameLabel.Hide();
-
-
-                password.Hide();
-                userName.Hide();
-                flowLayoutPanel1.Show();
-                panel2.Show();
-                cartPage1.Show();
-                profilePage1.Show();
-                classSearch1.Show();
-                enrolledClasses1.Show();
-
-
-                flowLayoutPanel1.Show();
-                profilePage1.Show();
-                profilePage1.BringToFront();
+                logInProcedure();
             }
 
         }
 
+        private void logInProcedure()
+        {
+            passwordLabel.Hide();
+            usernameLabel.Hide();
+
+
+            password.Hide();
+            userName.Hide();
+            flowLayoutPanel1.Show();
+            panel2.Show();
+            cartPage1.Show();
+            profilePage1.Show();
+            classSearch1.Show();
+            enrolledClasses1.Show();
+
+
+            flowLayoutPanel1.Show();
+            profilePage1.Show();
+            profilePage1.BringToFront();
+        }
         private void exitButton_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
@@ -150,6 +152,54 @@ namespace CMPT391Project
         private void enrolledClassesButton_Click(object sender, EventArgs e)
         {
             enrolledClasses1.BringToFront();
+        }
+
+        private void enrolledClasses1_Load(object sender, EventArgs e)
+        {
+            int returnedValue = -1; // Initilize sql response outside of try
+
+
+            // Default local host database with name CMPT391Database
+            using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=CMPT391Database;Integrated Security=True"))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Using the check login procedure
+                    using (SqlCommand cmd = new SqlCommand("class_search", conn))
+                    {
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Get inputted username/password
+                        cmd.Parameters.AddWithValue("@username", userName.Text);
+                        cmd.Parameters.AddWithValue("@password", password.Text);
+
+                        // Parameter for retrieving return value
+                        SqlParameter returnedParam = new SqlParameter("@ReturnValue", SqlDbType.Int);
+                        returnedParam.Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+
+
+                        cmd.ExecuteNonQuery();
+
+
+                        returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
+                    }
+                }
+                catch (SqlException exception)
+                {
+                    System.Diagnostics.Debug.WriteLine(returnedValue.ToString());
+                    System.Diagnostics.Debug.WriteLine(exception.Message);
+                }
+            }
+
+            // -1 represents bad login/connection
+            if (returnedValue > 0)
+            {
+                logInProcedure();
+            }
         }
     }
 }
