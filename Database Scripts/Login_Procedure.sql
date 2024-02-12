@@ -1,5 +1,3 @@
-use CMPT391Database;
-
 CREATE PROCEDURE check_login 
     @username int,
     @password NVARCHAR(128)
@@ -14,18 +12,4 @@ BEGIN
         return -1
     END
 END
-select * from Student
 
-CREATE PROCEDURE find_courses
-	@username int,
-AS 
-BEGIN 
-	IF (SELECT 1 FROM Student s WHERE s.studentId = @username)
-	BEGIN
-		return (select * from courses as c where )
-	END
-	ELSE
-	BEGIN 
-		return -1
-	END
-END
