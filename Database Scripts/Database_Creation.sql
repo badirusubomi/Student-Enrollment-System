@@ -1,6 +1,7 @@
 create database CMPT391Database
 
 use CMPT391Database
+
 create TABLE [Student] (
   [studentID] integer PRIMARY KEY,
   [fName] nvarchar(64),
@@ -118,4 +119,15 @@ ALTER TABLE [Teaches] ADD FOREIGN KEY ([courseID], [secID], [sem], [year]) REFER
 ALTER TABLE [Section] ADD FOREIGN KEY ([timeslotID]) REFERENCES [Timeslot] ([timeslotID])
 GO
 
-INSERT INTO [Student] values(1,'Olasubomi','Badiru','7802009763','badiruo@mymacewan.ca','badiruo', 'true');
+INSERT INTO [Student] values(1,'Olasubomi','Badiru','badiruo@mymacewan.ca','7802009763','badiruo', 'true');
+
+/* Order of table insertion
+
+- Students
+- Instructors
+- Departments
+- Courses
+- Timeslot
+- Sections
+-Taken
+*/
