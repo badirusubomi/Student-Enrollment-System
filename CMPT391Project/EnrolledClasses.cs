@@ -50,7 +50,7 @@ namespace CMPT391Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex != -1 || comboBox2.SelectedIndex != -1)
+            if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
             {
                 fillDataGrid();
             }

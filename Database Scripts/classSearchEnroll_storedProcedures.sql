@@ -62,10 +62,18 @@ go
 
 
 CREATE PROCEDURE show_classes
-    @courseName int, 
+    @courseName nvarchar(32), 
     @sem nvarchar(32),
     @year nvarchar(8)
 AS 
 BEGIN 
-	select * from Section s, Course c WHERE s.courseID = c.courseID AND c.courseName like '%' + @courseName + '%' AND s.sem = @sem AND s.year = @year;
+	select c.courseID, c.courseName, s.secID, s.sem, s.year, s.cap, s.enrolled,
+	ts.day, ts.startTime, ts.endTime, i.fName
+	from Section s, Course c, Timeslot ts, Teaches tc, Instructor i
+	WHERE s.courseID = c.courseID
+	AND s.timeslotID = ts.timeslotID
+	AND tc.courseID = s.courseID
+	AND tc.instructorID = i.instructorID
+	AND c.courseName like '%' + @courseName + '%' 
+	AND s.sem = @sem AND s.year = @year;
 END

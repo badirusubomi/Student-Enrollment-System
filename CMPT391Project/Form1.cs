@@ -157,6 +157,7 @@ namespace CMPT391Project
 
         private void enrolledClasses1_Load(object sender, EventArgs e)
         {
+            /*
             int returnedValue = -1; // Initilize sql response outside of try
 
 
@@ -200,7 +201,7 @@ namespace CMPT391Project
             if (returnedValue > 0)
             {
                 logInProcedure();
-            }
+            }*/
         }
     }
 }
