@@ -156,50 +156,7 @@ namespace CMPT391Project
 
         private void enrolledClasses1_Load(object sender, EventArgs e)
         {
-            int returnedValue = -1; // Initilize sql response outside of try
-
-
-            // Default local host database with name CMPT391Database
-            using (SqlConnection conn = new SqlConnection("Data Source=(local);Initial Catalog=CMPT391Database;Integrated Security=True"))
-            {
-                try
-                {
-                    conn.Open();
-
-                    // Using the check login procedure
-                    using (SqlCommand cmd = new SqlCommand("class_search", conn))
-                    {
-
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        // Get inputted username/password
-                        cmd.Parameters.AddWithValue("@username", userName.Text);
-                        cmd.Parameters.AddWithValue("@password", password.Text);
-
-                        // Parameter for retrieving return value
-                        SqlParameter returnedParam = new SqlParameter("@ReturnValue", SqlDbType.Int);
-                        returnedParam.Direction = ParameterDirection.ReturnValue;
-                        cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-
-
-                        cmd.ExecuteNonQuery();
-
-
-                        returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
-                    }
-                }
-                catch (SqlException exception)
-                {
-                    System.Diagnostics.Debug.WriteLine(returnedValue.ToString());
-                    System.Diagnostics.Debug.WriteLine(exception.Message);
-                }
-            }
-
-            // -1 represents bad login/connection
-            if (returnedValue > 0)
-            {
-                logInProcedure();
-            }
+            
         }
     }
 }

@@ -998,4 +998,4 @@ INSERT INTO [Student] values (1, 'Dagmar', 'Burnie', 'dburnie0@xrea.com', '82662
  INSERT INTO [Student] values (998, 'Merl', 'Rabson', 'mrabsonrp@godaddy.com', '5917565061', 'ldmWIT705', 'true');
  INSERT INTO [Student] values (999, 'Kary', 'Rain', 'krainrq@histats.com', '5626122355', 'tatSBX771', 'true');
  INSERT INTO [Student] values (1000, 'Urban', 'Campling', 'ucamplingrr@mlb.com', '1824098744', 'mrgJBU651', 'false');
- 
+  INSERT INTO [Student] values (1001, 'Urban', 'Campling', 'ucamplingrr@mlb.com', '1824098744', 'badiruo', 'true');
