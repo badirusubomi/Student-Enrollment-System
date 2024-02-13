@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -21,6 +22,42 @@ namespace CMPT391Project
             InitializeComponent();
         }
 
+        private void showClasses()
+        {
+            
+            var sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
+
+            // Default local host database with name CMPT391Database
+            using (SqlConnection conn = new SqlConnection(sqlConn))
+            {
+                try
+                {
+                    conn.Open();
+                    // Using the check login procedure
+                    using (SqlCommand cmd = new SqlCommand("show_classes", conn))
+                    {
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        MessageBox.Show("The class name is " + textBox1.Text + "Sem is " + comboBox1.Text);
+                        // Get inputted semester and year
+                        cmd.Parameters.AddWithValue("@courseName", textBox1.Text);
+                        cmd.Parameters.AddWithValue("@sem", comboBox1.Text);
+                        cmd.Parameters.AddWithValue("@year", comboBox2.Text);
+                        adpt = new SqlDataAdapter(cmd);
+                        dt = new DataTable();
+                        adpt.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                        conn.Close();
+                    }
+                }
+                catch (SqlException exception)
+                {
+
+                }
+            }
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -38,6 +75,11 @@ namespace CMPT391Project
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if( !( String.IsNullOrEmpty(textBox1.Text) ) & comboBox1.SelectedIndex != -1 & comboBox2.SelectedIndex != -1)
+            {
+                showClasses();
+            }
+            else  MessageBox.Show(" You have to enter a Class Name, Semester and Year to search");
 
         }
     }

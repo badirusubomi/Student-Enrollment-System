@@ -1,4 +1,3 @@
-INSERT INTO [Student] values (1, 'Dagmar', 'Burnie', 'dburnie0@xrea.com', '8266244683', 'owfPVI491', 'false');
  INSERT INTO [Student] values (2, 'Davis', 'Tregonna', 'dtregonna1@ask.com', '4023375241', 'tyeKOQ565', 'true');
  INSERT INTO [Student] values (3, 'Zsa zsa', 'Blanking', 'zblanking2@nifty.com', '2223850574', 'gzeTRQ905', 'false');
  INSERT INTO [Student] values (4, 'Raul', 'Borthwick', 'rborthwick3@yahoo.co.jp', '1433025815', 'boaORS461', 'true');
