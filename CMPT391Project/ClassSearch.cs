@@ -16,6 +16,10 @@ namespace CMPT391Project
     {
         SqlDataAdapter adpt;
         DataTable dt;
+        int cID = 0;
+        int secID = 0;
+        string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
+
 
         public ClassSearch()
         {
@@ -25,7 +29,7 @@ namespace CMPT391Project
         private void showClasses()
         {
             
-            var sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
+            //var sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
 
             // Default local host database with name CMPT391Database
             using (SqlConnection conn = new SqlConnection(sqlConn))
@@ -39,7 +43,7 @@ namespace CMPT391Project
 
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        MessageBox.Show("The class name is " + textBox1.Text + "Sem is " + comboBox1.Text);
+                      
                         // Get inputted semester and year
                         cmd.Parameters.AddWithValue("@courseName", textBox1.Text);
                         cmd.Parameters.AddWithValue("@sem", comboBox1.Text);
@@ -70,7 +74,14 @@ namespace CMPT391Project
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                cID = Int32.Parse(row.Cells["courseID"].Value.ToString() );
+                secID = Int32.Parse(row.Cells["secID"].Value.ToString() );
 
+                MessageBox.Show("ID is " + cID + " and the Sec is " + secID);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -80,6 +91,11 @@ namespace CMPT391Project
                 showClasses();
             }
             else  MessageBox.Show(" You have to enter a Class Name, Semester and Year to search");
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
 
         }
     }
