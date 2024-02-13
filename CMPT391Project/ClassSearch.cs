@@ -24,8 +24,7 @@ namespace CMPT391Project
 
         private void showClasses()
         {
-            DataTable dt = new DataTable();
-            adpt = new SqlDataAdapter();
+            
             var sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
 
             // Default local host database with name CMPT391Database
@@ -40,12 +39,13 @@ namespace CMPT391Project
 
                         cmd.CommandType = CommandType.StoredProcedure;
 
-
+                        MessageBox.Show("The class name is " + textBox1.Text + "Sem is " + comboBox1.Text);
                         // Get inputted semester and year
                         cmd.Parameters.AddWithValue("@courseName", textBox1.Text);
                         cmd.Parameters.AddWithValue("@sem", comboBox1.Text);
                         cmd.Parameters.AddWithValue("@year", comboBox2.Text);
-
+                        adpt = new SqlDataAdapter(cmd);
+                        dt = new DataTable();
                         adpt.Fill(dt);
                         dataGridView1.DataSource = dt;
                         conn.Close();
@@ -75,7 +75,7 @@ namespace CMPT391Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if( !( String.IsNullOrEmpty(textBox1.Text) ) || comboBox1.SelectedIndex != -1 || comboBox2.SelectedIndex != -1)
+            if( !( String.IsNullOrEmpty(textBox1.Text) ) & comboBox1.SelectedIndex != -1 & comboBox2.SelectedIndex != -1)
             {
                 showClasses();
             }
