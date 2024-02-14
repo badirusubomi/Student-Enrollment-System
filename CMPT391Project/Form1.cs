@@ -94,19 +94,21 @@ namespace CMPT391Project
             if (returnedValue > 0)
             {
                 enrolledClasses1.getUser = userName.Text;
+                classSearch1.getUser = userName.Text;
+                cartPage1.getUser = userName.Text;
                 passwordLabel.Hide();
                 usernameLabel.Hide();
 
                 Program.globalString = userName.Text;
 
-            password.Hide();
-            userName.Hide();
-            flowLayoutPanel1.Show();
-            panel2.Show();
-            cartPage1.Show();
-            profilePage1.Show();
-            classSearch1.Show();
-            enrolledClasses1.Show();
+                password.Hide();
+                userName.Hide();
+                flowLayoutPanel1.Show();
+                panel2.Show();
+                cartPage1.Show();
+                profilePage1.Show();
+                classSearch1.Show();
+                enrolledClasses1.Show();
 
 
                 flowLayoutPanel1.Show();
