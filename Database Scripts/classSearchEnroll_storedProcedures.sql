@@ -3,7 +3,7 @@ go
 
 
 
-CREATE PROCEDURE enroll_class
+alter PROCEDURE enroll_class
     @studentID int, 
     @courseID int,
     @sectionID int,
@@ -61,7 +61,7 @@ go
 
 
 
-CREATE PROCEDURE show_classes
+alter PROCEDURE show_classes
     @courseName nvarchar(32), 
     @sem nvarchar(32),
     @year nvarchar(8)
