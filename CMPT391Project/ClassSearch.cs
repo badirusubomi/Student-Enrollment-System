@@ -89,13 +89,13 @@ namespace CMPT391Project
             if (e.RowIndex >= 0)
             {
 
-                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                 cID = Int32.Parse(row.Cells["courseID"].Value.ToString());
                 secID = Int32.Parse(row.Cells["secID"].Value.ToString());
                 tsID = Int32.Parse(row.Cells["timeslotID"].Value.ToString());
                 sem = row.Cells["sem"].Value.ToString();
                 yr = row.Cells["year"].Value.ToString();
-                uName = getUser;
+                
                 string courseName = row.Cells["courseName"].Value.ToString();
                 MessageBox.Show("You have select " + cID + " " + courseName + " in Section "
                     + secID + " for " + sem + " " + yr + "");
@@ -119,6 +119,8 @@ namespace CMPT391Project
         private void button2_Click(object sender, EventArgs e)
         {
             int returnedValue = 1;
+            uName= getUser;
+            
 
             using (SqlConnection conn = new SqlConnection(sqlConn))
             {
@@ -134,21 +136,20 @@ namespace CMPT391Project
 
                         // Get inputted semester and year
                         cmd.Parameters.AddWithValue("@studentID", Int32.Parse(uName));
-                        cmd.Parameters.AddWithValue("@courseID", cID);
-                        cmd.Parameters.AddWithValue("@sectionID", secID);
+                        cmd.Parameters.AddWithValue("@courseID", (cID));
+                        cmd.Parameters.AddWithValue("@sectionID", (secID));
                         cmd.Parameters.AddWithValue("@semester", sem);
                         cmd.Parameters.AddWithValue("@year", yr);
-                        cmd.Parameters.AddWithValue("@timeslotID", tsID);
+                        cmd.Parameters.AddWithValue("@timeslotID", (tsID));
 
                         SqlParameter returnedParam = new SqlParameter("@ReturnValue", SqlDbType.Int);
                         returnedParam.Direction = ParameterDirection.ReturnValue;
-                        cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-
+                        cmd.Parameters.Add(returnedParam); // Use returnedParam instead of "@ReturnValue"
 
                         cmd.ExecuteNonQuery();
+                        conn.Close();
 
-
-                        returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
+                        returnedValue = (int)returnedParam.Value; // Use returnedParam.Value instead of cmd.Parameters["@ReturnValue"].Value
                         System.Console.WriteLine(returnedValue);
                         if (returnedValue == -1) MessageBox.Show("Unable to Enroll in class. Please check cart for time conflicts or ensure Pre Requisite requirments are met");
                         else if (returnedValue >= 0) MessageBox.Show("Successfully enrolled in class !");

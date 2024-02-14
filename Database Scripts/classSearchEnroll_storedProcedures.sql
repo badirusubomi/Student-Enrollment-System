@@ -131,14 +131,14 @@ go
 
 
 
-ALTER PROCEDURE show_classes
+CREATE OR ALTER PROCEDURE show_classes
     @courseName nvarchar(32), 
     @sem nvarchar(32),
     @year nvarchar(8)
 AS 
 BEGIN 
 	select c.courseID, c.courseName, s.secID, s.sem, s.year, s.cap, s.enrolled,
-	ts.day, ts.startTime, ts.endTime
+	ts.day, ts.startTime, ts.endTime, ts.timeslotID
 	from Course c
 	INNER JOIN Section s 
 		ON s.courseID = c.courseID 

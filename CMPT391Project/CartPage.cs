@@ -24,8 +24,7 @@ namespace CMPT391Project
         public CartPage()
         {
             InitializeComponent();
-            uName = getUser;
-            showClasses();
+            
             
 
            
@@ -37,8 +36,8 @@ namespace CMPT391Project
             string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
 
             //var sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
-           
-            
+
+            uName = getUser;
             // Default local host database with name CMPT391Database
             using (SqlConnection conn = new SqlConnection(sqlConn))
             {
@@ -53,7 +52,7 @@ namespace CMPT391Project
 
 
                         // Get inputted semester and year
-                        cmd.Parameters.AddWithValue("@userName", 1);
+                        cmd.Parameters.AddWithValue("@userName",uName);
 
                         adpt = new SqlDataAdapter(cmd);
                         dt = new DataTable();
@@ -75,6 +74,11 @@ namespace CMPT391Project
         {
             get; set;
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            showClasses();
         }
     }
 }
