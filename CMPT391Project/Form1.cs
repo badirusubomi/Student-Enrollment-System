@@ -98,14 +98,14 @@ namespace CMPT391Project
 
                 Program.globalString = userName.Text;
 
-            password.Hide();
-            userName.Hide();
-            flowLayoutPanel1.Show();
-            panel2.Show();
-            cartPage1.Show();
-            profilePage1.Show();
-            classSearch1.Show();
-            enrolledClasses1.Show();
+                password.Hide();
+                userName.Hide();
+                flowLayoutPanel1.Show();
+                panel2.Show();
+                cartPage1.Show();
+                profilePage1.Show();
+                classSearch1.Show();
+                enrolledClasses1.Show();
 
 
                 flowLayoutPanel1.Show();

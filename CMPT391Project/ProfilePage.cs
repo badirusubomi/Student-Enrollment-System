@@ -74,14 +74,15 @@ namespace CMPT391Project
                         if (returnValue == 1)
                         {
                             Console.WriteLine("Success");
+                            MessageBox.Show("Succesfully updated profile");
                         }
                         else if (returnValue == -1)
                         {
-                            Console.WriteLine("Failure 1");
+                            MessageBox.Show("Failed to update profile");
                         }
                         else
                         {
-                            Console.WriteLine("Failure 2");
+                            MessageBox.Show("Failed to update profile");
                         }
                     }
                 }
