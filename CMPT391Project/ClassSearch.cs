@@ -118,6 +118,7 @@ namespace CMPT391Project
 
         private void button2_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("ID is " + cID + " and the Sec is " + secID);
             int returnedValue = 1;
 
             using (SqlConnection conn = new SqlConnection(sqlConn))
@@ -131,8 +132,6 @@ namespace CMPT391Project
 
                         cmd.CommandType = CommandType.StoredProcedure;
 
-
-                        // Get inputted semester and year
                         cmd.Parameters.AddWithValue("@studentID", Int32.Parse(uName));
                         cmd.Parameters.AddWithValue("@courseID", cID);
                         cmd.Parameters.AddWithValue("@sectionID", secID);
