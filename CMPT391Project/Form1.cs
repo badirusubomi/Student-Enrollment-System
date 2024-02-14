@@ -84,6 +84,7 @@ namespace CMPT391Project
                 }
                 catch(SqlException exception)
                 {
+                    MessageBox.Show("Bad Connection");
                     System.Diagnostics.Debug.WriteLine(returnedValue.ToString());
                     System.Diagnostics.Debug.WriteLine(exception.Message);
                 }
@@ -114,7 +115,12 @@ namespace CMPT391Project
                 profilePage1.Show();
                 profilePage1.BringToFront();
 
-                
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid Login");
+
             }
 
         }

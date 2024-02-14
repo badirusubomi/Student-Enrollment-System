@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -10,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace CMPT391Project
 {
@@ -26,6 +28,8 @@ namespace CMPT391Project
         string yr = " ";//year
 
         string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
+
+        int returnedValue = 0;
 
 
         public ClassSearch()
@@ -69,7 +73,7 @@ namespace CMPT391Project
                 }
                 catch (SqlException exception)
                 {
-
+                    MessageBox.Show(exception.Message);
                 }
             }
         }
@@ -95,7 +99,6 @@ namespace CMPT391Project
                 tsID = Int32.Parse(row.Cells["timeslotID"].Value.ToString());
                 sem = row.Cells["sem"].Value.ToString();
                 yr = row.Cells["year"].Value.ToString();
-                
                 string courseName = row.Cells["courseName"].Value.ToString();
                 MessageBox.Show("You have select " + cID + " " + courseName + " in Section "
                     + secID + " for " + sem + " " + yr + "");
@@ -118,6 +121,7 @@ namespace CMPT391Project
 
         private void button2_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("ID is " + cID + " and the Sec is " + secID);
             int returnedValue = 1;
             uName= getUser;
             
@@ -133,11 +137,9 @@ namespace CMPT391Project
 
                         cmd.CommandType = CommandType.StoredProcedure;
 
-
-                        // Get inputted semester and year
-                        cmd.Parameters.AddWithValue("@studentID", Int32.Parse(uName));
-                        cmd.Parameters.AddWithValue("@courseID", (cID));
-                        cmd.Parameters.AddWithValue("@sectionID", (secID));
+                        cmd.Parameters.AddWithValue("@studentID", Program.globalString);
+                        cmd.Parameters.AddWithValue("@courseID", cID);
+                        cmd.Parameters.AddWithValue("@sectionID", secID);
                         cmd.Parameters.AddWithValue("@semester", sem);
                         cmd.Parameters.AddWithValue("@year", yr);
                         cmd.Parameters.AddWithValue("@timeslotID", (tsID));
@@ -146,12 +148,14 @@ namespace CMPT391Project
                         returnedParam.Direction = ParameterDirection.ReturnValue;
                         cmd.Parameters.Add(returnedParam); // Use returnedParam instead of "@ReturnValue"
 
+
                         cmd.ExecuteNonQuery();
                         conn.Close();
 
+
                         returnedValue = (int)returnedParam.Value; // Use returnedParam.Value instead of cmd.Parameters["@ReturnValue"].Value
                         System.Console.WriteLine(returnedValue);
-                        if (returnedValue == -1) MessageBox.Show("Unable to Enroll in class. Please check cart for time conflicts or ensure Pre Requisite requirments are met");
+                        if (returnedValue < 0) MessageBox.Show("Unable to Enroll in class. Please check cart for time conflicts or ensure Pre Requisite requirments are met");
                         else if (returnedValue >= 0) MessageBox.Show("Successfully enrolled in class !");
                     }
                 }
