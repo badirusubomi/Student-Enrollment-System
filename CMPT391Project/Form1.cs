@@ -93,6 +93,8 @@ namespace CMPT391Project
             if (returnedValue > 0)
             {
                 enrolledClasses1.getUser = userName.Text;
+                classSearch1.getUser = userName.Text;
+                cartPage1.getUser = userName.Text;
                 passwordLabel.Hide();
                 usernameLabel.Hide();
 

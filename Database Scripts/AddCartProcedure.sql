@@ -12,7 +12,9 @@ BEGIN
 		IF EXISTS (SELECT *
 			FROM Taken t 
 			INNER JOIN PreReq pr ON t.courseID = pr.prereqID 
-			WHERE t.studentID = @studentID AND pr.courseID = @courseID) 
+			WHERE t.studentID = @studentID 
+			AND pr.courseID = @courseID
+			AND t.progress = 3) 
 
 		-- Check if time conflicts --
 		AND NOT EXISTS (SELECT *
@@ -25,7 +27,7 @@ BEGIN
 				BEGIN TRANSACTION;
 
 				INSERT INTO Taken (studentID, courseID, secID, sem, year, progress) 
-				VALUES (@studentID, @courseID, @sectionID, @semester, @year, '1')
+				VALUES (@studentID, @courseID, @sectionID, @semester, @year, 1)
 
                 COMMIT TRANSACTION;
 
