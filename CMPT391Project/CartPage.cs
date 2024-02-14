@@ -20,25 +20,12 @@ namespace CMPT391Project
         int cID = 1;
         int secID = 1;
         string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
-
-
         SqlDataAdapter adpt;
         DataTable dt;
-        string uName = " ";
-        //int returnedValue = 0;
+       
 
-     
-        public CartPage()
-        {
-            InitializeComponent();
-            uName = getUser;
-            showClasses();
-            
 
-           
-        }
 
-        
         private void showClasses()
         {
             string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
@@ -60,7 +47,7 @@ namespace CMPT391Project
 
 
                         // Get inputted semester and year
-                        cmd.Parameters.AddWithValue("@userName", 1);
+                        cmd.Parameters.AddWithValue("@userName", Program.globalString);
 
                         adpt = new SqlDataAdapter(cmd);
                         dt = new DataTable();
@@ -78,6 +65,9 @@ namespace CMPT391Project
             }
 
         }
+    
+       
+        
         public string getUser
         {
             get; set;
