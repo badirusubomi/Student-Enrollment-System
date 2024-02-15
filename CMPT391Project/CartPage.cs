@@ -19,10 +19,12 @@ namespace CMPT391Project
         int cID = 1;
         int secID = 1;
         string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
+        SqlDataAdapter adpt;
+        DataTable dt;
+       
 
 
 
-        
         private void showClasses()
         {
             string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;

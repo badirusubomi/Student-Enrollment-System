@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace CMPT391Project
 {
@@ -16,9 +18,17 @@ namespace CMPT391Project
     {
         SqlDataAdapter adpt;
         DataTable dt;
-        int cID = 0;
-        int secID = 0;
+       
+        int cID = 0; //course id
+        int secID = 0; //section id
+        int tsID = 0;//timeslot id
+
+        string uName = " ";//student id/username
+        string sem = " ";//semester
+        string yr = " ";//year
         string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
+
+        int returnedValue = 0;
 
 
         public ClassSearch()
@@ -74,13 +84,20 @@ namespace CMPT391Project
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
-                cID = Int32.Parse(row.Cells["courseID"].Value.ToString() );
-                secID = Int32.Parse(row.Cells["secID"].Value.ToString() );
 
-                MessageBox.Show("ID is " + cID + " and the Sec is " + secID);
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                cID = Int32.Parse(row.Cells["courseID"].Value.ToString());
+                secID = Int32.Parse(row.Cells["secID"].Value.ToString());
+                tsID = Int32.Parse(row.Cells["timeslotID"].Value.ToString());
+                sem = row.Cells["sem"].Value.ToString();
+                yr = row.Cells["year"].Value.ToString();
+                string courseName = row.Cells["courseName"].Value.ToString();
+                MessageBox.Show("You have select " + cID + " " + courseName + " in Section "
+                    + secID + " for " + sem + " " + yr + "");
+
+
             }
         }
 
@@ -124,8 +141,6 @@ namespace CMPT391Project
                         cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
 
 
-                        cmd.Parameters.AddWithValue("@courseid", cID);
-                        cmd.Parameters.AddWithValue("@secId", secID);
                         cmd.ExecuteNonQuery();
                         conn.Close();
 
