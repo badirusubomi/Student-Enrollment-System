@@ -84,6 +84,7 @@ namespace CMPT391Project
                 }
                 catch(SqlException exception)
                 {
+                    MessageBox.Show("ASDASDA");
                     System.Diagnostics.Debug.WriteLine(returnedValue.ToString());
                     System.Diagnostics.Debug.WriteLine(exception.Message);
                 }
@@ -112,7 +113,12 @@ namespace CMPT391Project
                 profilePage1.Show();
                 profilePage1.BringToFront();
 
-                
+
+            }
+            else
+            {
+                MessageBox.Show("ASDASDA");
+
             }
 
         }

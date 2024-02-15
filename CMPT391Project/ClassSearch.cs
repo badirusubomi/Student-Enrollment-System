@@ -96,7 +96,32 @@ namespace CMPT391Project
 
         private void button2_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("ID is " + cID + " and the Sec is " + secID);
 
+            using (SqlConnection conn = new SqlConnection(sqlConn))
+            {
+                try
+                {
+                    conn.Open();
+                    // Using the check login procedure
+                    using (SqlCommand cmd = new SqlCommand("add_to_cart", conn))
+                    {
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+
+                        // Get inputted semester and year
+                        cmd.Parameters.AddWithValue("@courseId", cID);
+                        cmd.Parameters.AddWithValue("@secId", secID);
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+                catch (SqlException exception)
+                {
+
+                }
+            }
         }
     }
 }
