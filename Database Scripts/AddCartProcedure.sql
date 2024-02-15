@@ -1,11 +1,11 @@
-CREATE OR ALTER PROCEDURE add_to_cart
+CREATE OR ALTER PROCEDURE add_cart
     @studentID int, 
     @courseID int,
     @sectionID int,
     @semester nvarchar(32),
     @year nvarchar(8),
 	@timeslotID int
-
+	
 AS 
 BEGIN
 	-- Check if there is a prerequirement for the course --
@@ -22,7 +22,7 @@ BEGIN
 		AND NOT EXISTS (SELECT *
 			FROM Section s 
 			INNER JOIN Taken t ON s.courseID = t.courseID
-			WHERE t.studentID = @studentID AND s.timeslotID = @timeslotID AND s.sem = @semester AND s.year = @year)
+			WHERE t.studentID = @studentID AND s.timeslotID = @timeslotID AND UPPER(s.sem) =  UPPER(@semester) AND s.year = @year)
 
 		BEGIN
 			BEGIN TRY
@@ -48,7 +48,7 @@ BEGIN
 		IF NOT EXISTS (SELECT *
 			FROM Section s 
 			INNER JOIN Taken t ON s.courseID = t.courseID
-			WHERE t.studentID = @studentID AND s.timeslotID = @timeslotID AND s.sem = @semester AND s.year = @year)
+			WHERE t.studentID = @studentID AND s.timeslotID = @timeslotID AND UPPER(s.sem) = UPPER(@semester) AND s.year = @year)
 
 		BEGIN
 			BEGIN TRY

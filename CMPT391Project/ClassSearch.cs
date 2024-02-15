@@ -93,7 +93,7 @@ namespace CMPT391Project
             if (e.RowIndex >= 0)
             {
 
-                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                 cID = Int32.Parse(row.Cells["courseID"].Value.ToString());
                 secID = Int32.Parse(row.Cells["secID"].Value.ToString());
                 tsID = Int32.Parse(row.Cells["timeslotID"].Value.ToString());
@@ -165,7 +165,7 @@ namespace CMPT391Project
                     System.Diagnostics.Debug.WriteLine(exception.Message);
                 }
             }
-            
+
         }
     }
     

@@ -21,4 +21,4 @@ END
 
 select * from taken where studentID = 1 AND progress = 1 and year = '2024' and sem = 'Spring'
 
-exec  show_cart 1,'Spring', '2024'
+exec  show_cart 1
