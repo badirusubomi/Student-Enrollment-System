@@ -1,9 +1,79 @@
 use CMPT391Database
 go
 
+/*
+exec enroll_class 1001,1,1,'Spring','2024'
 
 
-CREATE PROCEDURE enroll_class
+delete from taken where studentID = 1001
+ INSERT INTO [Section] values (1, 4, 'Spring', 2023, 20, 0, 16);
+
+/*Add to shopping cart*/
+insert into Taken values(1,1,4,'Spring','2023',1)
+insert into Taken values(2,1,4,'Spring','2023',1)
+insert into Taken values(3,1,4,'Spring','2023',1)
+insert into Taken values(4,1,4,'Spring','2023',1)
+insert into Taken values(5,1,4,'Spring','2023',1)
+insert into Taken values(6,1,4,'Spring','2023',1)
+insert into Taken values(7,1,4,'Spring','2023',1)
+insert into Taken values(8,1,4,'Spring','2023',1)
+insert into Taken values(9,1,4,'Spring','2023',1)
+insert into Taken values(10,1,4,'Spring','2023',1)
+insert into Taken values(11,1,4,'Spring','2023',1)
+insert into Taken values(12,1,4,'Spring','2023',1)
+insert into Taken values(13,1,4,'Spring','2023',1)
+insert into Taken values(14,1,4,'Spring','2023',1)
+insert into Taken values(15,1,4,'Spring','2023',1)
+insert into Taken values(16,1,4,'Spring','2023',1)
+insert into Taken values(17,1,4,'Spring','2023',1)
+insert into Taken values(18,1,4,'Spring','2023',1)
+insert into Taken values(19,1,4,'Spring','2023',1)
+insert into Taken values(20,1,4,'Spring','2023',1)
+insert into Taken values(21,1,4,'Spring','2023',1)
+insert into Taken values(22,1,4,'Spring','2023',1)
+insert into Taken values(23,1,4,'Spring','2023',1)
+insert into Taken values(24,1,4,'Spring','2023',1)
+
+/*Enroll in classes*/
+
+exec enroll_class 1,1,4,'Spring','2023'
+exec enroll_class 2,1,4,'Spring','2023'
+exec enroll_class 3,1,4,'Spring','2023'
+exec enroll_class 4,1,4,'Spring','2023'
+exec enroll_class 5,1,4,'Spring','2023'
+exec enroll_class 6,1,4,'Spring','2023'
+exec enroll_class 7,1,4,'Spring','2023'
+exec enroll_class 8,1,4,'Spring','2023'
+exec enroll_class 9,1,4,'Spring','2023'
+exec enroll_class 10,1,4,'Spring','2023'
+exec enroll_class 11,1,4,'Spring','2023'
+exec enroll_class 12,1,4,'Spring','2023'
+exec enroll_class 13,1,4,'Spring','2023'
+exec enroll_class 14,1,4,'Spring','2023'
+exec enroll_class 15,1,4,'Spring','2023'
+exec enroll_class 16,1,4,'Spring','2023'
+exec enroll_class 17,1,4,'Spring','2023'
+exec enroll_class 18,1,4,'Spring','2023'
+exec enroll_class 19,1,4,'Spring','2023'
+exec enroll_class 20,1,4,'Spring','2023'
+exec enroll_class 21,1,4,'Spring','2023'
+exec enroll_class 22,1,4,'Spring','2023'
+exec enroll_class 23,1,4,'Spring','2023'
+exec enroll_class 24,1,4,'Spring','2023'
+
+
+update section
+set enrolled = 0
+where courseID = 1 AND secID = 4 AND sem = 'Spring' AND year = '2023';
+
+delete from Taken
+select * from Taken
+select * from Taken t where t.secID= 3 and t.sem = 'Spring' and t.year = '2023'
+select * from section s where s.courseID = 1 and s.secID = 4 and s.sem = 'Spring' and s.year = '2023'; 
+*/
+
+
+alter PROCEDURE enroll_class
     @studentID int, 
     @courseID int,
     @sectionID int,
@@ -12,7 +82,7 @@ CREATE PROCEDURE enroll_class
 AS 
 BEGIN 
     -- Check if the student is already enrolled in the specified class
-    IF EXISTS (SELECT 1 FROM Taken t WHERE t.studentID = @studentID AND t.courseID = @courseID AND t.secID = @sectionID AND t.sem = @semester AND t.year = @year)
+    IF NOT EXISTS (SELECT 1 FROM Taken t WHERE t.studentID = @studentID AND t.courseID = @courseID AND t.secID = @sectionID AND t.sem = @semester AND t.year = @year and (t.progress = 2 or t.progress = 3))
     BEGIN
         BEGIN TRY
             BEGIN TRANSACTION;
@@ -53,7 +123,7 @@ BEGIN
     END
     ELSE
     BEGIN 
-        -- Return -1 if the student is not enrolled in the specified class
+        -- Return -1 if the student is already enrolled in the specified class
         RETURN -1;
     END
 END

@@ -16,6 +16,7 @@ namespace CMPT391Project
     public partial class CartPage : UserControl
     {
 
+
         int cID = 1;
         int secID = 1;
         string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
@@ -64,6 +65,9 @@ namespace CMPT391Project
             }
 
         }
+    
+       
+        
         public string getUser
         {
             get; set;
