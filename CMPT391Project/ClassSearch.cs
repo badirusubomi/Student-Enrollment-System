@@ -111,7 +111,9 @@ namespace CMPT391Project
 
 
                         // Get inputted semester and year
-                        cmd.Parameters.AddWithValue("@courseId", cID);
+                        cmd.Parameters.AddWithValue("@studentID", Program.globalString);
+
+                        cmd.Parameters.AddWithValue("@courseid", cID);
                         cmd.Parameters.AddWithValue("@secId", secID);
                         cmd.ExecuteNonQuery();
                         conn.Close();
@@ -119,7 +121,14 @@ namespace CMPT391Project
                 }
                 catch (SqlException exception)
                 {
-
+                    if (exception.Number == 2627)
+                    {
+                        MessageBox.Show("This course is already in the cart.");
+                    }
+                    else
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
             }
         }

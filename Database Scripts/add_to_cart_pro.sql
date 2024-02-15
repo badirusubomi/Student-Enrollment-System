@@ -1,4 +1,4 @@
-CREATE PROC add_to_cart
+create PROC add_to_cart
     @courseid int,
     @studentID int,
     @secId int
@@ -16,5 +16,5 @@ BEGIN
         Course c
         JOIN Section s ON c.courseID = s.courseID
     WHERE
-        s.secID = @secId
+        s.secID = @secId and c.courseID = @courseid
 END
