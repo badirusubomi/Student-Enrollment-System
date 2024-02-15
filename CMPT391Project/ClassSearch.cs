@@ -57,7 +57,7 @@ namespace CMPT391Project
                 }
                 catch (SqlException exception)
                 {
-
+                    MessageBox.Show(exception.Message);
                 }
             }
         }
@@ -113,10 +113,27 @@ namespace CMPT391Project
                         // Get inputted semester and year
                         cmd.Parameters.AddWithValue("@studentID", Program.globalString);
 
+                        cmd.Parameters.AddWithValue("@courseID", cID);
+                        cmd.Parameters.AddWithValue("@sectionID", secID);
+                        cmd.Parameters.AddWithValue("@semester", sem);
+                        cmd.Parameters.AddWithValue("@year", yr);
+                        cmd.Parameters.AddWithValue("@timeslotID", tsID);
+
+                        SqlParameter returnedParam = new SqlParameter("@ReturnValue", SqlDbType.Int);
+                        returnedParam.Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+
+
                         cmd.Parameters.AddWithValue("@courseid", cID);
                         cmd.Parameters.AddWithValue("@secId", secID);
                         cmd.ExecuteNonQuery();
                         conn.Close();
+
+
+                        returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
+                        System.Console.WriteLine(returnedValue);
+                        if (returnedValue < 0) MessageBox.Show("Unable to Enroll in class. Please check cart for time conflicts or ensure Pre Requisite requirments are met");
+                        else if (returnedValue >= 0) MessageBox.Show("Successfully enrolled in class !");
                     }
                 }
                 catch (SqlException exception)

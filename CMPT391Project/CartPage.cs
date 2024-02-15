@@ -21,9 +21,51 @@ namespace CMPT391Project
         string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
 
 
-        public CartPage()
+
+        
+        private void showClasses()
         {
-            InitializeComponent();
+            string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
+
+            //var sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
+           
+            
+            // Default local host database with name CMPT391Database
+            using (SqlConnection conn = new SqlConnection(sqlConn))
+            {
+                try
+                {
+                    conn.Open();
+                    // Using the check login procedure
+                    using (SqlCommand cmd = new SqlCommand("show_cart", conn))
+                    {
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+
+                        // Get inputted semester and year
+                        cmd.Parameters.AddWithValue("@userName", Program.globalString);
+
+                        adpt = new SqlDataAdapter(cmd);
+                        dt = new DataTable();
+                        adpt.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                        conn.Close();
+                    }
+                }
+                catch (SqlException exception)
+                {
+                    //System.Diagnostics.Debug.WriteLine(returnedValue.ToString());
+                    System.Diagnostics.Debug.WriteLine(exception.Message);
+
+                }
+            }
+
+        }
+        public string getUser
+        {
+            get; set;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
