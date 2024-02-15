@@ -123,8 +123,6 @@ namespace CMPT391Project
         {
             MessageBox.Show("ID is " + cID + " and the Sec is " + secID);
             int returnedValue = 1;
-            uName= getUser;
-            
 
             using (SqlConnection conn = new SqlConnection(sqlConn))
             {
@@ -142,18 +140,19 @@ namespace CMPT391Project
                         cmd.Parameters.AddWithValue("@sectionID", secID);
                         cmd.Parameters.AddWithValue("@semester", sem);
                         cmd.Parameters.AddWithValue("@year", yr);
-                        cmd.Parameters.AddWithValue("@timeslotID", (tsID));
+                        cmd.Parameters.AddWithValue("@timeslotID", tsID);
 
                         SqlParameter returnedParam = new SqlParameter("@ReturnValue", SqlDbType.Int);
                         returnedParam.Direction = ParameterDirection.ReturnValue;
-                        cmd.Parameters.Add(returnedParam); // Use returnedParam instead of "@ReturnValue"
+                        cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+
 
 
                         cmd.ExecuteNonQuery();
                         conn.Close();
 
 
-                        returnedValue = (int)returnedParam.Value; // Use returnedParam.Value instead of cmd.Parameters["@ReturnValue"].Value
+                        returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
                         System.Console.WriteLine(returnedValue);
                         if (returnedValue < 0) MessageBox.Show("Unable to Enroll in class. Please check cart for time conflicts or ensure Pre Requisite requirments are met");
                         else if (returnedValue >= 0) MessageBox.Show("Successfully enrolled in class !");
@@ -166,7 +165,7 @@ namespace CMPT391Project
                     System.Diagnostics.Debug.WriteLine(exception.Message);
                 }
             }
-            
+
         }
     }
     

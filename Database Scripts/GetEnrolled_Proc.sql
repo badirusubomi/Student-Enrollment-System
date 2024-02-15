@@ -1,4 +1,4 @@
-alter PROCEDURE show_enrolled_classes
+CREATE OR alter PROCEDURE show_enrolled_classes
     @username int,
     @sem NVARCHAR(32),
 	@year NVARCHAR(8)

@@ -17,12 +17,16 @@ namespace CMPT391Project
     {
 
 
-        int cID = 1;
-        int secID = 1;
+        int cID = 0;
+        int secID = 0;
+        string sem = " ";
+        string yr = " ";
+        string uName = " ";
+
         string sqlConn = ConfigurationManager.ConnectionStrings["myConnStr"].ConnectionString;
         SqlDataAdapter adpt;
         DataTable dt;
-        string uName = " ";
+       
         //int returnedValue = 0;
 
      
@@ -75,6 +79,8 @@ namespace CMPT391Project
             }
 
         }
+
+
     
        
         
@@ -88,63 +94,92 @@ namespace CMPT391Project
         {
             showClasses();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void enroll_Click(object sender, EventArgs e)
         {
-            int returnedValue = 0;
-            using (SqlConnection conn = new SqlConnection(sqlConn))
+          
+
+
+        }
+
+        private void enrollButton_Click(object sender, EventArgs e)
+        {
+            if ( !(String.IsNullOrEmpty(sem) )  && !(String.IsNullOrEmpty(yr) ) )
             {
-                try
+                int returnedValue = 0;
+                using (SqlConnection conn = new SqlConnection(sqlConn))
                 {
-                    conn.Open();
-                    // Using the check login procedure
-                    using (SqlCommand cmd = new SqlCommand("enroll_class", conn))
+                    try
                     {
+                        conn.Open();
+                        // Using the check login procedure
+                        using (SqlCommand cmd = new SqlCommand("enroll_class", conn))
+                        {
 
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-
-                        // Get inputted semester and year
-                        cmd.Parameters.AddWithValue("@studentID", Program.globalString);
-
-                        cmd.Parameters.AddWithValue("@courseID", cID);
-                        cmd.Parameters.AddWithValue("@sectionID", secID);
-                        cmd.Parameters.AddWithValue("@semester", "FALL");
-                        cmd.Parameters.AddWithValue("@year", "2024");
+                            cmd.CommandType = CommandType.StoredProcedure;
 
 
+                            // Get inputted semester and year
+                            cmd.Parameters.AddWithValue("@studentID", Program.globalString);
 
-                        SqlParameter returnedParam = new SqlParameter("@ReturnValue", SqlDbType.Int);
-                        returnedParam.Direction = ParameterDirection.ReturnValue;
-                        cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+                            cmd.Parameters.AddWithValue("@courseID", cID);
+                            cmd.Parameters.AddWithValue("@sectionID", secID);
+                            cmd.Parameters.AddWithValue("@semester", sem);
+                            cmd.Parameters.AddWithValue("@year", yr);
 
-                        cmd.ExecuteNonQuery();
 
-                        returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
 
+                            SqlParameter returnedParam = new SqlParameter("@ReturnValue", SqlDbType.Int);
+                            returnedParam.Direction = ParameterDirection.ReturnValue;
+                            cmd.Parameters.Add("@ReturnValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+
+                            cmd.ExecuteNonQuery();
+
+                            returnedValue = (int)cmd.Parameters["@ReturnValue"].Value;
+
+                        }
+                    }
+                    catch (SqlException exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
+                    catch (IndexOutOfRangeException exception2)
+                    {
+                        MessageBox.Show(exception2.Message);
                     }
                 }
-                catch (SqlException exception)
+
+
+
+                if (returnedValue < 0)
                 {
-                    MessageBox.Show(exception.Message);
+                    MessageBox.Show("Error - " + returnedValue);
                 }
-                catch (IndexOutOfRangeException exception2)
+                else
                 {
-                    MessageBox.Show(exception2.Message);
+                    MessageBox.Show("Successfully Enrolled");
                 }
             }
+            else MessageBox.Show("Please select a class first");
+        }
 
-
-            if (returnedValue < 0)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
             {
-                MessageBox.Show("Error - " + returnedValue);
-            }
-            else
-            {
-                MessageBox.Show("Successfully Enrolled");
-            }
+
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                cID = Int32.Parse(row.Cells["courseID"].Value.ToString());
+                secID = Int32.Parse(row.Cells["secID"].Value.ToString());
+                //int tsID = Int32.Parse(row.Cells["timeslotID"].Value.ToString());
+                sem = row.Cells["sem"].Value.ToString();
+                yr = row.Cells["year"].Value.ToString();
+                string courseName = row.Cells["courseName"].Value.ToString();
+                MessageBox.Show("You have select " + cID + " " + courseName + " in Section "
+                    + secID + " for " + sem + " " + yr + "");
 
 
+            }
         }
     }
 
