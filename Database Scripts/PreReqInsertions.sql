@@ -1,0 +1,11 @@
+insert into PreReq values(201, 200)
+insert into PreReq values(200, 103)
+insert into PreReq values(103, 101)
+insert into PreReq values(272, 204)
+insert into PreReq values(391, 291)
+insert into PreReq values(341, 241)
+insert into PreReq values(496, 395)
+insert into PreReq values(395, 201)
+insert into PreReq values(115, 114)
+insert into PreReq values(220, 120)
+
